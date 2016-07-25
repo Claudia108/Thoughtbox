@@ -24,10 +24,8 @@ gem 'nokogiri', '~> 1.6.7.2'
 gem 'responders'
 gem 'figaro'
 gem 'rails_12factor', group: :production
-
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+gem 'validate_url'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -45,6 +43,7 @@ group :development, :test do
   gem "pry", :require => "pry"
   gem 'database_cleaner'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'selenium-webdriver'
 end
 
 group :development do

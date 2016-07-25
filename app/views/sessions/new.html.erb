@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Welcome to Thoughtbox</h1>
+
+  <h3>The place for your thoughts</h3>
+
+    <%= form_for(:session, url: login_path) do |f| %>
+      <%= f.text_field :email, placeholder: "Email" %>
+      <%= f.password_field :password, placeholder: "Password" %>
+
+      <span class="login-signup">
+        <%= f.submit "LOGIN", class:"btn btn-primary", method: :create %>
+          or
+        <%= link_to "SIGN UP", new_user_path, class:"btn btn-primary"%>
+      </span>
+
+    <% end %>
+</div>
