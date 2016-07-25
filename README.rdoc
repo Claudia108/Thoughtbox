@@ -1,28 +1,16 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
-
-* Ruby version
+* Ruby version: 2.3.0
 
 * System dependencies
 
 * Configuration
 
-* Database creation
+* Database creation: postgresql database
 
-* Database initialization
+* Database initialization: run rake db:create
 
-* How to run the test suite
+* How to run the test suite: rspec
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Not deployed but initealized on: https://powerful-chamber-64534.herokuapp.com/
