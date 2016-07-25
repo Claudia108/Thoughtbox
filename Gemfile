@@ -24,6 +24,7 @@ gem 'nokogiri', '~> 1.6.7.2'
 gem 'responders'
 gem 'figaro'
 gem 'rails_12factor', group: :production
+gem 'bcrypt', '~> 3.1.7'
 
 
 # Use ActiveModel has_secure_password
