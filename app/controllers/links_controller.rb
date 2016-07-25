@@ -1,8 +1,17 @@
 class LinksController < ApplicationController
-  before_action :require_user
 
   def index
-    binding.pry
-    @links = current_user.links.all
+   if current_user
+      @links = current_user.links
+    else
+      redirect_to login_path
+    end
   end
+
+  private
+
+   def link_params
+      params.require(:link).permit(:url, :title)
+    end
+
 end
