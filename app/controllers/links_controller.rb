@@ -15,20 +15,20 @@ class LinksController < ApplicationController
       flash[:notice] = "Data is missing or invalid! Try again"
       redirect_to links_path
     end
+  end
 
-    def edit
-      @link = Link.find(params[:id])
-    end
+  def edit
+    @link = Link.find(params[:id])
+  end
 
-    def update
-      @link = Link.find(params[:id])
-      if @link.update(link_params)
-        flash[:notice] = "#{@link.title} Updated!"
-        redirect_to links_path
-      else
-        flash[:notice] = "Data is missing or invalid! Try again"
-        redirect_to edit_link_path(@link)
-      end
+  def update
+    @link = Link.find(params[:id])
+    if @link.update(link_params)
+      flash[:notice] = "#{@link.title} Updated!"
+      redirect_to links_path
+    else
+      flash[:notice] = "Data is missing or invalid! Try again"
+      redirect_to edit_link_path(@link)
     end
   end
 

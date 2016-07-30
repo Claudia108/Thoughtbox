@@ -11,3 +11,8 @@
 /log/*
 !/log/.keep
 /tmp
+/public/assets
+
+/coverage
+
+.byebug_history

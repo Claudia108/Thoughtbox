@@ -24,6 +24,7 @@
     <% end %>
   </div>
 </div>
+
 <h2>Here Are Your Links</h2>
 
 <div class="links">
@@ -37,8 +38,8 @@
      <div class="url"><%= link.url %>
      </div></h4><br>
      <p class="list-group-item-text">
-     This link is <b><%= link.read_status %></b>
-     <%= link_to "Edit Link", edit_link_path(link), class: "btn btn-primary" %>
+     This link is <b><%= link.read_status %></b></p><br>
+     <p><%= link_to "Edit Link", edit_link_path(link), class: "btn btn-primary" %></p>
   <% end %>
  </div>
 </div>
