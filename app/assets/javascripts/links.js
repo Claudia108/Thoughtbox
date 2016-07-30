@@ -1,5 +1,6 @@
 $(document).ready(function() {
   searchLinks();
+  sortLinks();
 });
 
 
@@ -18,5 +19,23 @@ function searchLinks(){
         $(link).hide();
       }
     });
+  });
+}
+
+function sortLinks() {
+  $('#sortLinks').on('click', function(event) {
+    event.preventDefault();
+    var sortedLinks = $(".everyLink").sort(function(a, b) {
+      var nameA = $(a).find(".title").text().toLowerCase();
+      var nameB = $(b).find(".title").text().toLowerCase();
+      if (nameA < nameB) {
+        return -1;
+      } else if (nameA > nameB) {
+        return 1;
+      } else {
+      return 0;
+      }
+    });
+   $(".links").replaceWith(sortedLinks);
   });
 }
