@@ -52,8 +52,10 @@ RSpec.feature "user filters links", js: true do
 
     expect(page).to have_content(link1.title)
     expect(page).to have_content(link1.url)
+
     expect(page).to have_content(link2.title)
     expect(page).to have_content(link2.url)
+
     expect(page).to have_content(link3.title)
     expect(page).to have_content(link3.url)
   end
