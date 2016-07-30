@@ -4,18 +4,26 @@
 
 <h2>Enter a new Link</h2>
 
-<form class="form-inline" id="save-link">
-  <div class="form-group">
-    <label for="LinkTitle">Title</label>
-    <input type="text" class="form-control" id="LinkTitle" placeholder="Your link's title">
-  </div><br>
-  <div class="form-group">
-    <label for="LinkUrl">Url</label>
-    <input type="text" class="form-control" id="LinkUrl" placeholder="Your cool link ...">
-  </div><br>
-  <button type="submit" class="btn btn-primary">Save</button>
-</form>
+<div class="row" id="save-link">
+  <div class="inpt-form">
+    <%= form_for @link do |f| %>
 
+      <fieldset class="form-group col-md-4">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control" %>
+      </fieldset>
+
+      <fieldset class="form-group col-md-4">
+        <%= f.label :url %>
+        <%= f.text_field :url, class: "form-control", placeholder: "Your cool link ..." %>
+      </fieldset>
+
+      <fieldset class="form-group col-md-6">
+        <%= f.submit "Save Link", class: "btn btn-primary" %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
 <h2>Here Are Your Links</h2>
 
 <div class="links">
@@ -29,7 +37,8 @@
      <div class="url"><%= link.url %>
      </div></h4><br>
      <p class="list-group-item-text">
-     This link is <b><%= link.read %></b>
+     This link is <b><%= link.read_status %></b>
+     <%= link_to "Edit Link", edit_link_path(link), class: "btn btn-primary" %>
   <% end %>
  </div>
 </div>

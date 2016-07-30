@@ -9,4 +9,27 @@ RSpec.describe Link, type: :model do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:url) }
   end
+
+  it "validates url" do
+    link = Link.new(title: "My link", url: "My cool link")
+    expect(link.valid?).to be false
+
+    link = Link.new(title: "My link", url: "http://www.google.com")
+    expect(link.valid?).to be true
+  end
+
+  it "has a false default value for read " do
+    link = Link.new(title: "My Link", url: "enter url here")
+    expect(link.read).to be false
+  end
+
+  context 'read_status' do
+    it 'returns "read" when read is true' do
+      link1 = Link.new(title: "My link", url: "https://turing.io")
+      link2 = Link.new(title: "My link", url: "https://turing.io", read: true)
+
+      expect(link1.read_status).to eq("unread")
+      expect(link2.read_status).to eq("read")
+    end
+  end
 end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "user creates new link" do
-  scenario "user fills in title and url and saves", js: true do
+  scenario "user fills in title and url and saves" do
     user = User.create(email: "me@me.com", password: "password")
 
     visit root_path
@@ -13,7 +13,7 @@ RSpec.feature "user creates new link" do
 
     fill_in "Title", with: "Link 1"
     fill_in "Url", with: "http://www.turing.io"
-    click_button("Save")
+    click_button("Save Link")
 
     expect(current_path).to eq("/links")
 
