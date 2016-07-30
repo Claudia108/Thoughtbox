@@ -16,6 +16,9 @@ RSpec.feature "user views all links" do
     click_button("LOGIN")
 
     expect(current_path).to eq("/links")
+
+    expect(page).to have_content("My Links")
+
     expect(page).to have_content(link1.title)
     expect(page).to have_content(link1.url)
     expect(page).to have_content(link1.read_status)
@@ -24,7 +27,9 @@ RSpec.feature "user views all links" do
     expect(page).to have_content(link2.url)
     expect(page).to have_content(link2.read_status)
 
-    expect(page).to have_selector('h3', count: 2)
-    expect(page).to have_selector('h4', count: 2)
+    within(".links") do
+      expect(page).to have_selector('h3', count: 2)
+      expect(page).to have_selector('h4', count: 2)
+    end
   end
 end

@@ -17,7 +17,7 @@ RSpec.feature "user creates new link" do
 
     expect(current_path).to eq("/links")
 
-    expect(page).to have_content("Here Are Your Links")
+    expect(page).to have_content("My Links")
 
     expect(page).to have_content("Link 1")
     expect(page).to have_content("http://www.turing.io")

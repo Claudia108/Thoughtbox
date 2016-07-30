@@ -1,11 +1,13 @@
-<h1>My Links</h1>
 
-<%= link_to "Sign Out", logout_path, method: :delete %>
+<h1>My Thoughtbox</h1>
+<h4>... the place for my thoughts ... </h4>
+
+<%= link_to "Sign Out", logout_path, method: :delete, class: "btn btn-warning" %>
 
 <h2>Enter a new Link</h2>
 
 <div class="row" id="save-link">
-  <div class="inpt-form">
+  <div class="input-form">
     <%= form_for @link do |f| %>
 
       <fieldset class="form-group col-md-4">
@@ -15,17 +17,31 @@
 
       <fieldset class="form-group col-md-4">
         <%= f.label :url %>
-        <%= f.text_field :url, class: "form-control", placeholder: "Your cool link ..." %>
+        <%= f.text_field :url, class: "form-control", placeholder: "http://www.example.com" %>
       </fieldset>
 
       <fieldset class="form-group col-md-6">
         <%= f.submit "Save Link", class: "btn btn-primary" %>
       </fieldset>
+
     <% end %>
   </div>
 </div>
 
-<h2>Here Are Your Links</h2>
+<h2>My Links</h2>
+
+<div class="search-form">
+
+<h4>Filter Links</h4>
+<form class="form-inline" id="search-link">
+  <div class="form-group">
+     <label class="sr-only" for="search"></label>
+    <!-- <input type="text" class="form-control" id="link-text" placeholder="Search"> -->
+    <input type="text" class="form-control" id="filterLinks" placeholder="Search Term">
+  </div>
+</form>
+</div>
+
 
 <div class="links">
  <div class="list-group">

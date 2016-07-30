@@ -16,7 +16,7 @@ RSpec.feature "user updates existing link" do
     click_button("LOGIN")
     expect(current_path).to eq("/links")
 
-    expect(page).to have_content("Here Are Your Links")
+    expect(page).to have_content("My Links")
 
     expect(page).to have_content("My Link")
     expect(page).to have_content("unread")
@@ -32,7 +32,7 @@ RSpec.feature "user updates existing link" do
 
     expect(current_path).to eq("/links")
 
-    expect(page).to have_content("Here Are Your Links")
+    expect(page).to have_content("My Links")
 
     expect(page).to have_content("Link 2")
     expect(page).to have_content("http://www.turing.io")
@@ -54,7 +54,7 @@ RSpec.feature "user updates existing link" do
     click_button("LOGIN")
     expect(current_path).to eq("/links")
 
-    expect(page).to have_content("Here Are Your Links")
+    expect(page).to have_content("My Links")
 
     expect(page).to have_content("My Link")
     expect(page).to have_content("unread")
