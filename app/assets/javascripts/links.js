@@ -82,12 +82,11 @@ function changeReadStatus(button) {
 function filterUnreadLinks() {
   $('#unreadLinks').on('click', function (event) {
     event.preventDefault();
-    $('.links').each(function(i, link) {
-      if ($(link).find('.read') >= 0) {
-        debugger;
-        $(link).show();
-      } else {
+    $('.everyLink').each(function(i, link) {
+      if ($(link).hasClass('read')) {
         $(link).hide();
+      } else {
+        $(link).show();
       }
     });
   });
