@@ -23,7 +23,7 @@
 }
 
 .links {
-  width: 80%;
+  width: 100%;
 }
 
 #search-link {
@@ -57,7 +57,7 @@
 }
 .navbar {
   margin: 5px 0 40px 0;
-  width: 80%;
+  width: 100%;
 }
 
 .new-link {
