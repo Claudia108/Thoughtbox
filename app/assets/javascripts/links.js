@@ -64,7 +64,7 @@ function markAsUnread() {
 function updateDatabase (id, button, status) {
   $.ajax({
     url: "api/v1/links/" + id,
-    method: "put",
+    method: "PATCH",
     dataType: "json",
     data: { link:
             {read: status}
