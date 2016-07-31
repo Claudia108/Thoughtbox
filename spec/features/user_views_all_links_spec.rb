@@ -21,11 +21,9 @@ RSpec.feature "user views all links" do
 
     expect(page).to have_content(link1.title)
     expect(page).to have_content(link1.url)
-    expect(page).to have_content(link1.read_status)
 
     expect(page).to have_content(link2.title)
     expect(page).to have_content(link2.url)
-    expect(page).to have_content(link2.read_status)
 
     within(".links") do
       expect(page).to have_selector('h3', count: 2)

@@ -21,6 +21,6 @@ RSpec.feature "user creates new link" do
 
     expect(page).to have_content("Link 1")
     expect(page).to have_content("http://www.turing.io")
-    expect(page).to have_content("unread")
+    expect(page).to have_content("Mark as Read")
   end
 end

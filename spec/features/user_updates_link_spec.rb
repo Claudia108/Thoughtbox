@@ -19,7 +19,7 @@ RSpec.feature "user updates existing link" do
     expect(page).to have_content("My Links")
 
     expect(page).to have_content("My Link")
-    expect(page).to have_content("unread")
+    expect(page).to have_content("Mark as Read")
     expect(page).to have_link("Edit Link")
 
     click_link("Edit Link")
@@ -36,7 +36,7 @@ RSpec.feature "user updates existing link" do
 
     expect(page).to have_content("Link 2")
     expect(page).to have_content("http://www.turing.io")
-    expect(page).to have_content("unread")
+    expect(page).to have_content("Mark as Read")
   end
 
   scenario "user can't update link with invalid url" do
@@ -57,7 +57,7 @@ RSpec.feature "user updates existing link" do
     expect(page).to have_content("My Links")
 
     expect(page).to have_content("My Link")
-    expect(page).to have_content("unread")
+    expect(page).to have_content("Mark as Read")
     expect(page).to have_link("Edit Link")
 
     click_link("Edit Link")

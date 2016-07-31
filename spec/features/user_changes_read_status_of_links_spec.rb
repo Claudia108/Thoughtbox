@@ -2,8 +2,11 @@ require 'rails_helper'
 
 RSpec.feature "user changes read_status of links", js: true do
   scenario "marks links as read" do
-    user = User.create(email: "me@me.com", password: "password")
-    link = Link.create(title: "Best Link", url: "https://www.turing.io", user_id: user.id)
+    user = User.create(email: "me@me.com",
+                       password: "password")
+    link = Link.create(title: "Best Link",
+                       url: "https://www.turing.io",
+                       user_id: user.id)
 
     visit root_path
 
@@ -15,19 +18,20 @@ RSpec.feature "user changes read_status of links", js: true do
 
     expect(page).to have_content(link.title)
     expect(page).to have_content(link.url)
-    expect(link.read_status).to eq("unread")
-    expect(page).to have_content("Mark as read")
+    expect(page).to have_content("Mark as Read")
 
-    find("#markLink").click
+    find(".markAsRead").click
     wait_for_ajax
 
-    expect(page).to have_content("Mark as unread")
-    expect(link.read_status).to eq("read")
+    expect(page).to have_content("Mark as Unread")
   end
 
   scenario "marks links as unread" do
-    user = User.create(email: "me@me.com", password: "password")
-    link = Link.create(title: "Best Link", url: "https://www.turing.io", user_id: user.id)
+    user = User.create(email: "me@me.com",
+                       password: "password")
+    link = Link.create(title: "Best Link",
+                       url: "https://www.turing.io",
+                       user_id: user.id)
     link.update(read: true)
 
     visit root_path
@@ -40,13 +44,11 @@ RSpec.feature "user changes read_status of links", js: true do
 
     expect(page).to have_content(link.title)
     expect(page).to have_content(link.url)
-    expect(link.read_status).to eq("read")
     expect(page).to have_content("Mark as Unread")
 
-    find("#markLink").click
+    find(".markAsUnread").click
     wait_for_ajax
 
     expect(page).to have_content("Mark as Read")
-    expect(link.read_status).to eq("unread")
   end
 end

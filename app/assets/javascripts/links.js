@@ -1,7 +1,8 @@
 $(document).ready(function() {
   searchLinks();
   sortLinks();
-  markLinks();
+  markAsRead();
+  markAsUnread();
 });
 
 function searchLinks(){
@@ -40,34 +41,23 @@ function sortLinks() {
   });
 }
 
-function markLinks() {
-  $('#markLinks').on('click', function(event) {
+function markAsRead() {
+  $('.markAsRead').on('click', function(event) {
     event.preventDefault();
     var id = $(this).parents(".everyLink").data("id");
-    var readStatus = $(this).parents(".everyLink").data("read");
-    var link = $(this).parents(".everyLink");
-    if (readStatus === false) {
-      readStatus = true;
-    } else {
-      readStatus = false;
-    }
-    updateDatabase(id, readStatus, link);
+    updateDatabase(id, this, true);
   });
 }
 
-// function changeReadStatus(id) {
-//   var read_status = $(".everyLink").data("id");
-//       var readStatus = $(this).text();
-//       if (readStatus === "Mark as Read"){
-//         readStatus = $(this).text("Mark as Unread");
-//       } else {
-//         readStatus = $(this).text("Mark as Read");
-//       }
-//       return readStatus;
-//     }
-// };
+function markAsUnread() {
+  $('.markAsUnread').on('click', function(event) {
+    event.preventDefault();
+    var id = $(this).parents(".everyLink").data("id");
+    updateDatabase(id, this, false);
+  });
+}
 
-function updateDatabase (id, status, link) {
+function updateDatabase (id, button, status) {
   $.ajax({
     url: "api/v1/links/" + id,
     method: "put",
@@ -76,21 +66,13 @@ function updateDatabase (id, status, link) {
             {read: status}
           },
     success: function() {
-      changeReadStatus(status, link);
+      changeReadStatus(button);
     }
   });
 }
 
-function changeReadStatus(status, link) {
-  if (status === false) {
-    $(link).removeClass("read");
-    $(link).addClass("unread");
-    $(link).find("button").text("Mark as Read");
-  } else {
-    $(link).removeClass("unread");
-    $(link).addClass("read");
-    $(link).find("button").text("Mark as Unread");
-  }
+function changeReadStatus(button) {
+  $(button).toggleClass('hidden');
+  $(button).siblings().first().toggleClass('hidden');
+  $(button).parent().parent().toggleClass('read');
 }
-//  <a href="#" class="markAsRead <%= "hidden" if link.read %>">(Mark as read)</a>
-// <a href="#" class="markAsUnread <%= "hidden" if !link.read %>">(Mark as unread)</a>
