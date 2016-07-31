@@ -1,0 +1,22 @@
+<h2>Update Link</h2>
+
+<div class="row" id="save-link">
+  <div class="input-form">
+    <%= form_for @link do |f| %>
+
+      <fieldset class="form-group col-md-4">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control" %>
+      </fieldset>
+
+      <fieldset class="form-group col-md-4">
+        <%= f.label :url %>
+        <%= f.text_field :url, class: "form-control"%>
+      </fieldset>
+
+      <fieldset class="form-group col-md-6">
+        <%= f.submit "Update Link", class: "btn btn-primary" %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>

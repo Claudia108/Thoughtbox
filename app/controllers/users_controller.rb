@@ -16,11 +16,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    render file: '/public/404' if current_user.nil?
-    @user = current_user
-  end
-
   private
 
   def user_params

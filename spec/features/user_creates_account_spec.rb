@@ -52,11 +52,11 @@ RSpec.feature "User creates account" do
     click_button("LOGIN")
 
     expect(page).to have_current_path('/links')
-    expect(page).to have_content("My Links")
+    expect(page).to have_content("My Thoughtbox")
 
     expect(page).to have_link('Sign Out')
     click_link("Sign Out")
-    expect(page).to have_current_path('/')
+    expect(page).to have_current_path('/login')
 
     within(".flash-notice") do
       expect(page).to have_content("Logged out!")

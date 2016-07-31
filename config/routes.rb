@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'sessions#new'
+  root 'links#index'
   resources :links
   resources :users
 
@@ -8,7 +8,8 @@ Rails.application.routes.draw do
       resources :links
     end
   end
-
+  
+  get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 

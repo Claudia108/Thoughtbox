@@ -14,6 +14,17 @@ module WaitForAjax
   end
 end
 
+module UserHelpers
+  def login_user
+    user = User.create(email: "me@me.com", password: "password")
+    visit root_path
+
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button("LOGIN")
+  end
+end
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # Capybara.default_driver = :selenium

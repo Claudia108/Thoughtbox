@@ -1,17 +1,33 @@
 <div class="container">
   <h1>Welcome to Thoughtbox</h1>
 
-  <h3>The place for your thoughts</h3>
+  <h4>...the place for your thoughts...</h4>
 
+  <br>
+
+<div class="row" id="save-link">
+  <div class="inpt-form">
     <%= form_for(:session, url: login_path) do |f| %>
-      <%= f.text_field :email, placeholder: "Email" %>
-      <%= f.password_field :password, placeholder: "Password" %>
 
-      <span class="login-signup">
-        <%= f.submit "LOGIN", class:"btn btn-primary", method: :create %>
-          or
-        <%= link_to "SIGN UP", new_user_path, class:"btn btn-primary"%>
-      </span>
+      <fieldset class="form-group col-md-4">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+      </fieldset>
 
+      <fieldset class="form-group col-md-4">
+        <%= f.label :password %>
+        <%= f.text_field :password, class: "form-control", placeholder: "Password" %>
+      </fieldset>
+
+      <fieldset class="form-group col-md-6">
+        <span class="login-signup">
+          <%= f.submit "LOGIN", class:"btn btn-primary", method: :create %>
+            or
+          <%= link_to "SIGN UP", new_user_path, class:"btn btn-primary"%>
+        </span>
+      </fieldset>
     <% end %>
+  </div>
+</div>
+
 </div>

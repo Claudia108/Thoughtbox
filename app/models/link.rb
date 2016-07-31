@@ -4,7 +4,7 @@ class Link < ActiveRecord::Base
   validates :title, presence: true
   validates :url, presence: true, url: true
 
-  enum read: %w(unread read)
-
-
+  def read_status
+    return "read" if read
+  end
 end
