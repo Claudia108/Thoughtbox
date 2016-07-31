@@ -1,4 +1,4 @@
-class Api::V1::LinksController < Api::V1::ApiController
+class Api::V1::LinksController < Api::ApiController
 
   def update
     respond_with Link.find(params[:id]).update(link_params)
