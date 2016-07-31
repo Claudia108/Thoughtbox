@@ -3,6 +3,8 @@ $(document).ready(function() {
   sortLinks();
   markAsRead();
   markAsUnread();
+  filterUnreadLinks();
+
 });
 
 function searchLinks(){
@@ -75,4 +77,18 @@ function changeReadStatus(button) {
   $(button).toggleClass('hidden');
   $(button).siblings().first().toggleClass('hidden');
   $(button).parent().parent().toggleClass('read');
+}
+
+function filterUnreadLinks() {
+  $('#unreadLinks').on('click', function (event) {
+    event.preventDefault();
+    $('.links').each(function(i, link) {
+      if ($(link).find('.read') >= 0) {
+        debugger;
+        $(link).show();
+      } else {
+        $(link).hide();
+      }
+    });
+  });
 }
