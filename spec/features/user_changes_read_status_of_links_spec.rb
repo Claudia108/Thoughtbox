@@ -41,12 +41,12 @@ RSpec.feature "user changes read_status of links", js: true do
     expect(page).to have_content(link.title)
     expect(page).to have_content(link.url)
     expect(link.read_status).to eq("read")
-    expect(page).to have_content("Mark as unread")
+    expect(page).to have_content("Mark as Unread")
 
     find("#markLink").click
     wait_for_ajax
 
-    expect(page).to have_content("Mark as read")
+    expect(page).to have_content("Mark as Read")
     expect(link.read_status).to eq("unread")
   end
 end

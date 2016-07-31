@@ -32,4 +32,14 @@ RSpec.describe Link, type: :model do
       expect(link2.read_status).to eq("read")
     end
   end
+
+  context 'mark_as_status' do
+    it 'returns "Mark as Read" when read is true' do
+      link1 = Link.new(title: "My link", url: "https://turing.io")
+      link2 = Link.new(title: "My link", url: "https://turing.io", read: true)
+
+      expect(link1.mark_as_status).to eq("Mark as Read")
+      expect(link2.mark_as_status).to eq("Mark as Unread")
+    end
+  end
 end
