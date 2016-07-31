@@ -3,7 +3,6 @@ $(document).ready(function() {
   sortLinks();
 });
 
-
 function searchLinks(){
   $('#filterLinks').on('keyup', function(event){
     event.preventDefault();
