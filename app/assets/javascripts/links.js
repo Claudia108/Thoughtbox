@@ -1,6 +1,7 @@
 $(document).ready(function() {
   searchLinks();
   sortLinks();
+  markLinks();
 });
 
 function searchLinks(){
@@ -38,3 +39,58 @@ function sortLinks() {
    $(".links").replaceWith(sortedLinks);
   });
 }
+
+function markLinks() {
+  $('#markLinks').on('click', function(event) {
+    event.preventDefault();
+    var id = $(this).parents(".everyLink").data("id");
+    var readStatus = $(this).parents(".everyLink").data("read");
+    var link = $(this).parents(".everyLink");
+    if (readStatus === false) {
+      readStatus = true;
+    } else {
+      readStatus = false;
+    }
+    updateDatabase(id, readStatus, link);
+  });
+}
+
+// function changeReadStatus(id) {
+//   var read_status = $(".everyLink").data("id");
+//       var readStatus = $(this).text();
+//       if (readStatus === "Mark as Read"){
+//         readStatus = $(this).text("Mark as Unread");
+//       } else {
+//         readStatus = $(this).text("Mark as Read");
+//       }
+//       return readStatus;
+//     }
+// };
+
+function updateDatabase (id, status, link) {
+  $.ajax({
+    url: "api/v1/links/" + id,
+    method: "put",
+    dataType: "json",
+    data: { link:
+            {read: status}
+          },
+    success: function() {
+      changeReadStatus(status, link);
+    }
+  });
+}
+
+function changeReadStatus(status, link) {
+  if (status === false) {
+    $(link).removeClass("read");
+    $(link).addClass("unread");
+    $(link).find("button").text("Mark as Read");
+  } else {
+    $(link).removeClass("unread");
+    $(link).addClass("read");
+    $(link).find("button").text("Mark as Unread");
+  }
+}
+//  <a href="#" class="markAsRead <%= "hidden" if link.read %>">(Mark as read)</a>
+// <a href="#" class="markAsUnread <%= "hidden" if !link.read %>">(Mark as unread)</a>
