@@ -4,6 +4,8 @@ $(document).ready(function() {
   markAsRead();
   markAsUnread();
   filterUnreadLinks();
+  filterReadLinks();
+  AllLinks();
 
 });
 
@@ -28,7 +30,7 @@ function searchLinks(){
 function sortLinks() {
   $('#sortLinks').on('click', function(event) {
     event.preventDefault();
-    var sortedLinks = $(".everyLink").sort(function(a, b) {
+    var sortedLinks = $('.everyLink').sort(function(a, b) {
       var nameA = $(a).find(".title").text().toLowerCase();
       var nameB = $(b).find(".title").text().toLowerCase();
       if (nameA < nameB) {
@@ -89,5 +91,25 @@ function filterUnreadLinks() {
         $(link).show();
       }
     });
+  });
+}
+
+function filterReadLinks() {
+  $('#readLinks').on('click', function (event) {
+    event.preventDefault();
+    $('.everyLink').each(function(i, link) {
+      if ($(link).hasClass('read')) {
+        $(link).show();
+      } else {
+        $(link).hide();
+      }
+    });
+  });
+}
+
+function AllLinks() {
+  $('#allLinks').on('click', function (event) {
+    event.preventDefault();
+    $('.everyLink').show();
   });
 }

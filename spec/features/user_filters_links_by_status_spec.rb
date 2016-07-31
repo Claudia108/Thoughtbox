@@ -32,8 +32,8 @@ RSpec.feature "user filters links by status", js: true do
     find("#unreadLinks").click
     wait_for_ajax
 
-    expect(page).to not_have_content(link1.title)
-    expect(page).to not_have_content(link1.url)
+    expect(page).to_not have_content(link1.title)
+    expect(page).to_not have_content(link1.url)
 
     expect(page).to have_content(link2.title)
     expect(page).to have_content(link2.url)
@@ -75,10 +75,10 @@ RSpec.feature "user filters links by status", js: true do
     expect(page).to have_content(link1.title)
     expect(page).to have_content(link1.url)
 
-    expect(page).to not_have_content(link2.title)
-    expect(page).to not_have_content(link2.url)
-    expect(page).to not_have_content(link3.title)
-    expect(page).to not_have_content(link3.url)
+    expect(page).to_not have_content(link2.title)
+    expect(page).to_not have_content(link2.url)
+    expect(page).to_not have_content(link3.title)
+    expect(page).to_not have_content(link3.url)
   end
 
 end
