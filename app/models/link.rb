@@ -7,9 +7,4 @@ class Link < ActiveRecord::Base
   def read_status
     return "read" if read
   end
-
-  # def mark_as_status
-  #   return "Mark as Unread" if read
-  #     "Mark as Read"
-  # end
 end

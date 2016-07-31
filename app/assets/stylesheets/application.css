@@ -22,6 +22,49 @@
   margin: 20px 0px;
 }
 
+.links {
+  width: 80%;
+}
+
+#search-link {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  width: 80%
+}
+
+.link-buttons {
+  padding-right: 0px;
+  width: 35%;
+  margin-bottom: 20px;
+}
+
+.search {
+  margin-right: 5px;
+}
 .read {
   background-color: rgb(228, 227, 225);
+}
+
+.sign-out {
+  text-align: right;
+  margin-top: 6px;
+  margin-right: 23px;
+}
+
+.navbar-left {
+  margin-left: 10px;
+  margin-top: 12px;
+}
+.navbar {
+  margin: 5px 0 40px 0;
+  width: 80%;
+}
+
+.new-link {
+  margin-top: 40px;
+  width: 80%;
+}
+
+.my-links {
+  margin-top: 40px;
 }

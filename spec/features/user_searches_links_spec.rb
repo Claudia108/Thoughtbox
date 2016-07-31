@@ -22,7 +22,7 @@ RSpec.feature "user filters links", js: true do
     expect(page).to have_content(link3.title)
     expect(page).to have_content(link3.url)
 
-    expect(page).to have_content("Filter Links")
+    expect(page).to have_content("Search Links")
     find("#filterLinks").click
     find("#filterLinks").set('first')
     wait_for_ajax
