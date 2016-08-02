@@ -1,67 +1,71 @@
 $(document).ready(function() {
-  searchLinks();
-  sortLinks();
-  markAsRead();
-  markAsUnread();
-  filterUnreadLinks();
-  filterReadLinks();
-  AllLinks();
-
-});
-
-function searchLinks(){
   $('#filterLinks').on('keyup', function(event){
     event.preventDefault();
     var searchTerm = $(this).val().toLowerCase();
+    searchLinks(searchTerm);
+  });
 
-    $(".list-group-item").each(function(_index, link){
-      var title = $(this).find('.title').text().toLowerCase();
-      var url = $(this).find('.url').text().toLowerCase();
+  $('#sortLinks').on('click', function(event) {
+    event.preventDefault();
+    sortLinks();
+  });
 
-      if (title.match(searchTerm) || url.match(searchTerm)) {
-        $(link).show();
-      } else {
-        $(link).hide();
-      }
-    });
+  $('.markAsRead').on('click', function(event) {
+    event.preventDefault();
+    var id = $(this).parents(".everyLink").data("id");
+    sendUpdate(id, this, true);
+  });
+
+  $('.markAsUnread').on('click', function(event) {
+    event.preventDefault();
+    var id = $(this).parents(".everyLink").data("id");
+    sendUpdate(id, this, false);
+  });
+
+  $('#unreadLinks').on('click', function (event) {
+    event.preventDefault();
+    filterLinksByReadStatus(false);
+  });
+
+  $('#readLinks').on('click', function (event) {
+    event.preventDefault();
+    filterLinksByReadStatus(true);
+  });
+
+  $('#allLinks').on('click', function (event) {
+    event.preventDefault();
+    allLinks();
+  });
+});
+
+function searchLinks(searchTerm) {
+  $(".list-group-item").each(function(_index, link){
+    var title = $(this).find('.title').text().toLowerCase();
+    var url = $(this).find('.url').text().toLowerCase();
+    if (title.match(searchTerm) || url.match(searchTerm)) {
+      $(link).show();
+    } else {
+      $(link).hide();
+    }
   });
 }
 
 function sortLinks() {
-  $('#sortLinks').on('click', function(event) {
-    event.preventDefault();
-    var sortedLinks = $('.everyLink').sort(function(a, b) {
-      var nameA = $(a).find(".title").text().toLowerCase();
-      var nameB = $(b).find(".title").text().toLowerCase();
-      if (nameA < nameB) {
-        return -1;
-      } else if (nameA > nameB) {
-        return 1;
-      } else {
+  var sortedLinks = $('.everyLink').sort(function(a, b) {
+    var linkA = $(a).find(".title").text().toLowerCase();
+    var linkB = $(b).find(".title").text().toLowerCase();
+    if (linkA < linkB) {
+      return -1;
+    } else if (linkA > linkB) {
+      return 1;
+    } else {
       return 0;
-      }
-    });
-   $(".links").replaceWith(sortedLinks);
+    }
   });
+  $(".links").replaceWith(sortedLinks);
 }
 
-function markAsRead() {
-  $('.markAsRead').on('click', function(event) {
-    event.preventDefault();
-    var id = $(this).parents(".everyLink").data("id");
-    updateDatabase(id, this, true);
-  });
-}
-
-function markAsUnread() {
-  $('.markAsUnread').on('click', function(event) {
-    event.preventDefault();
-    var id = $(this).parents(".everyLink").data("id");
-    updateDatabase(id, this, false);
-  });
-}
-
-function updateDatabase (id, button, status) {
+function sendUpdate (id, button, status) {
   $.ajax({
     url: "api/v1/links/" + id,
     method: "PATCH",
@@ -81,35 +85,16 @@ function changeReadStatus(button) {
   $(button).parent().parent().toggleClass('read');
 }
 
-function filterUnreadLinks() {
-  $('#unreadLinks').on('click', function (event) {
-    event.preventDefault();
-    $('.everyLink').each(function(i, link) {
-      if ($(link).hasClass('read')) {
-        $(link).hide();
-      } else {
-        $(link).show();
-      }
-    });
+function filterLinksByReadStatus(readStatus) {
+  $('.everyLink').each(function(i, link) {
+    if(readStatus) {
+      $(link).hasClass('read') ? $(link).show() : $(link).hide();
+    } else {
+      $(link).hasClass('read') ? $(link).hide() : $(link).show();
+    }
   });
 }
 
-function filterReadLinks() {
-  $('#readLinks').on('click', function (event) {
-    event.preventDefault();
-    $('.everyLink').each(function(i, link) {
-      if ($(link).hasClass('read')) {
-        $(link).show();
-      } else {
-        $(link).hide();
-      }
-    });
-  });
-}
-
-function AllLinks() {
-  $('#allLinks').on('click', function (event) {
-    event.preventDefault();
-    $('.everyLink').show();
-  });
+function allLinks() {
+  $('.everyLink').show();
 }

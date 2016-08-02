@@ -3,9 +3,15 @@ require 'rails_helper'
 RSpec.feature "user sorts links", js: true do
   scenario "sorts alphabetically by title" do
     user = User.create(email: "me@me.com", password: "password")
-    link1 = Link.create(title: "Best Link", url: "https://www.turing.io", user_id: user.id)
-    link2 = Link.create(title: "Sweet Link", url: "https://www.google.com", user_id: user.id)
-    link3 = Link.create(title: "Awesome Link", url: "https://www.texarch.com", user_id: user.id)
+    link1 = Link.create(title: "Best Link",
+                        url: "https://www.turing.io",
+                        user_id: user.id)
+    link2 = Link.create(title: "Sweet Link",
+                        url: "https://www.google.com",
+                        user_id: user.id)
+    link3 = Link.create(title: "Awesome Link",
+                        url: "https://www.texarch.com",
+                        user_id: user.id)
 
     visit root_path
 
@@ -29,13 +35,13 @@ RSpec.feature "user sorts links", js: true do
     wait_for_ajax
 
     titles = page.all(".everyLink")
-    titles[0].should have_content(link3.title)
-    titles[0].should have_content(link3.url)
+    expect(titles[0]).to have_content(link3.title)
+    expect(titles[0]).to have_content(link3.url)
 
-    titles[1].should have_content(link1.title)
-    titles[1].should have_content(link1.url)
+    expect(titles[1]).to have_content(link1.title)
+    expect(titles[1]).to have_content(link1.url)
 
-    titles[2].should have_content(link2.title)
-    titles[2].should have_content(link2.url)
+    expect(titles[2]).to have_content(link2.title)
+    expect(titles[2]).to have_content(link2.url)
   end
 end

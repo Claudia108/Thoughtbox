@@ -14,24 +14,14 @@ module WaitForAjax
   end
 end
 
-module UserHelpers
-  def login_user
-    user = User.create(email: "me@me.com", password: "password")
-    visit root_path
-
-    fill_in "Email", with: user.email
-    fill_in "Password", with: user.password
-    click_button("LOGIN")
-  end
-end
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # Capybara.default_driver = :selenium
   config.include WaitForAjax, type: :feature
   config.expect_with :rspec do |expectations|
-    expectations.include_chain_clauses_in_custom_matcher_descriptions = true
-  end
+  expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+end
 
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true

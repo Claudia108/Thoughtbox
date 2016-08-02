@@ -5,9 +5,9 @@ RSpec.feature "user views all links" do
     user = User.create(email: "me@me.com", password: "password")
 
     link1 = Link.create(title: "Link 1", url: "https://www.turing.io",
-                        read: "unread", user_id: user.id)
+                        user_id: user.id)
     link2 = Link.create(title: "Link 2", url: "https://www.google.com",
-                        read: "unread", user_id: user.id)
+                        user_id: user.id)
 
     visit '/'
 

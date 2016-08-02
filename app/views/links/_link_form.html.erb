@@ -1,0 +1,20 @@
+  <div class="row" id="save-link">
+    <div class="input-form">
+      <%= form_for @link, url: url do |f| %>
+
+        <fieldset class="form-group col-md-4">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: "form-control" %>
+        </fieldset>
+
+        <fieldset class="form-group col-md-4">
+          <%= f.label :url %>
+          <%= f.text_field :url, class: "form-control", placeholder: "http://www.example.com" %>
+        </fieldset>
+
+        <fieldset class="form-group col-md-6">
+          <%= f.submit message, class: "btn btn-primary" %>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>

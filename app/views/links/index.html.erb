@@ -11,26 +11,7 @@
 
 <section class="new-link">
   <h3>Enter a new Link</h3>
-  <div class="row" id="save-link">
-    <div class="input-form">
-      <%= form_for @link do |f| %>
-
-        <fieldset class="form-group col-md-4">
-          <%= f.label :title %>
-          <%= f.text_field :title, class: "form-control" %>
-        </fieldset>
-
-        <fieldset class="form-group col-md-4">
-          <%= f.label :url %>
-          <%= f.text_field :url, class: "form-control", placeholder: "http://www.example.com" %>
-        </fieldset>
-
-        <fieldset class="form-group col-md-6">
-          <%= f.submit "Save Link", class: "btn btn-primary" %>
-        </fieldset>
-      <% end %>
-    </div>
-  </div>
+  <%= render partial: "link_form", locals: { url: { controller: 'links', action: 'create'}, message: "Save Link" } %>
 </section>
 
 <section class="my-links">
@@ -44,11 +25,8 @@
     </div>
     <div class="col-md-4">
       <form class="form-inline" id="search-link"><b class="search">Search Links</b>
-        <!-- <div class="form-group"> -->
         <label class="sr-only" for="search"></label>
-        <!-- <input type="text" class="form-control" id="link-text" placeholder="Search"> -->
         <input type="text" class="form-control" id="filterLinks" placeholder="search for...">
-        <!-- </div> -->
       </form>
     </div>
   </div>
