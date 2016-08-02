@@ -2,6 +2,7 @@
 
 
 * Ruby version: 2.3.0
+* Rails version: 4.2.6
 
 * System dependencies
 
@@ -9,8 +10,11 @@
 
 * Database creation: postgresql database
 
-* Database initialization: run rake db:create
+* Setup:
+  * git clone git@github.com:Claudia108/TexArch.git
+  * bundle
+  * Database initialization: run rake db:create
 
 * How to run the test suite: rspec
 
-* Not deployed but initealized on: https://powerful-chamber-64534.herokuapp.com/
+* Deployed on heroku: https://powerful-chamber-64534.herokuapp.com/

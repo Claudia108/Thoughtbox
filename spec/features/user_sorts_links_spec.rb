@@ -29,13 +29,13 @@ RSpec.feature "user sorts links", js: true do
     wait_for_ajax
 
     titles = page.all(".everyLink")
-    titles[0].should have_content(link3.title)
-    titles[0].should have_content(link3.url)
+    expect(titles[0]).to have_content(link3.title)
+    expect(titles[0]).to have_content(link3.url)
 
-    titles[1].should have_content(link1.title)
-    titles[1].should have_content(link1.url)
+    expect(titles[1]).to have_content(link1.title)
+    expect(titles[1]).to have_content(link1.url)
 
-    titles[2].should have_content(link2.title)
-    titles[2].should have_content(link2.url)
+    expect(titles[2]).to have_content(link2.title)
+    expect(titles[2]).to have_content(link2.url)
   end
 end
