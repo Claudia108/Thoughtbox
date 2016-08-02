@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   $('#filterLinks').on('keyup', function(event){
     event.preventDefault();
     var searchTerm = $(this).val().toLowerCase();
@@ -14,23 +13,23 @@ $(document).ready(function() {
   $('.markAsUnread').on('click', function(event) {
     event.preventDefault();
     var id = $(this).parents(".everyLink").data("id");
-    updateDatabase(id, this, false);
+    sendUpdate(id, this, false);
   });
 
   $('.markAsRead').on('click', function(event) {
     event.preventDefault();
     var id = $(this).parents(".everyLink").data("id");
-    updateDatabase(id, this, true);
+    sendUpdate(id, this, true);
   });
 
   $('#unreadLinks').on('click', function (event) {
     event.preventDefault();
-    filterLinksByStatus(false);
+    filterLinksByReadStatus(false);
   });
 
   $('#readLinks').on('click', function (event) {
     event.preventDefault();
-    filterLinksByStatus(true);
+    filterLinksByReadStatus(true);
   });
 
   $('#allLinks').on('click', function (event) {
@@ -38,7 +37,6 @@ $(document).ready(function() {
     allLinks();
   });
 });
-
 
 function searchLinks(searchTerm) {
   $(".list-group-item").each(function(_index, link){
@@ -61,13 +59,13 @@ function sortLinks() {
     } else if (linkA > linkB) {
       return 1;
     } else {
-    return 0;
+      return 0;
     }
   });
   $(".links").replaceWith(sortedLinks);
 }
 
-function updateDatabase (id, button, status) {
+function sendUpdate (id, button, status) {
   $.ajax({
     url: "api/v1/links/" + id,
     method: "PATCH",
@@ -87,23 +85,14 @@ function changeReadStatus(button) {
   $(button).parent().parent().toggleClass('read');
 }
 
-function filterLinksByStatus(status) {
+function filterLinksByReadStatus(readStatus) {
   $('.everyLink').each(function(i, link) {
-    if(status) {
-      if ($(link).hasClass('read')) {
-        $(link).show();
-      } else {
-        $(link).hide();
-      }
+    if(readStatus) {
+      $(link).hasClass('read') ? $(link).show() : $(link).hide();
     } else {
-      if ($(link).hasClass('read')) {
-        $(link).hide();
-      } else {
-        $(link).show();
-      }
+      $(link).hasClass('read') ? $(link).hide() : $(link).show();
     }
-    });
-
+  });
 }
 
 function allLinks() {
