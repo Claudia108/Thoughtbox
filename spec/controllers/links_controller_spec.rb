@@ -1,3 +1,4 @@
+require 'rails_helper'
 RSpec.describe LinksController, type: :controller do
   before do
     User.create(email: "me@me.com", password: "password")
