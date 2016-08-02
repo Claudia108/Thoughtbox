@@ -2,7 +2,6 @@ RSpec.describe LinksController, type: :controller do
   before do
     User.create(email: "me@me.com", password: "password")
     allow_any_instance_of(LinksController).to receive(:current_user).and_return(User.last)
-    # LinksController.any_instance.stub(:current_user).and_return(User.last)
     Link.create(title: "link 1", url: "www.turing.io", user_id: User.last.id)
   end
 
