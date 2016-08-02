@@ -1,18 +1,20 @@
 require 'rails_helper'
 
 RSpec.feature "user updates existing link" do
+  setup do
+    @user = User.create(email: "me@me.com",
+                        password: "password")
+
+    @link = Link.create(title: "My Link",
+                        url:"https://www.google.com",
+                        user_id: @user.id)
+  end
+  
   scenario "user fills in title and url and updates" do
-    user = User.create(email: "me@me.com",
-                       password: "password")
-
-    link = Link.create(title: "My Link",
-                       url:"https://www.google.com",
-                       user_id: user.id)
-
     visit root_path
 
-    fill_in "Email", with: user.email
-    fill_in "Password", with: user.password
+    fill_in "Email", with: @user.email
+    fill_in "Password", with: @user.password
     click_button("LOGIN")
     expect(current_path).to eq("/links")
 
@@ -24,7 +26,7 @@ RSpec.feature "user updates existing link" do
 
     click_link("Edit Link")
 
-    expect(current_path).to eq("/links/#{link.id}/edit")
+    expect(current_path).to eq("/links/#{@link.id}/edit")
 
     fill_in "Title", with: "Link 2"
     fill_in "Url", with: "http://www.turing.io"
@@ -40,17 +42,10 @@ RSpec.feature "user updates existing link" do
   end
 
   scenario "user can't update link with invalid url" do
-    user = User.create(email: "me@me.com",
-                       password: "password")
-
-    link = Link.create(title: "My Link",
-                       url:"https://www.google.com",
-                       user_id: user.id)
-
     visit root_path
 
-    fill_in "Email", with: user.email
-    fill_in "Password", with: user.password
+    fill_in "Email", with: @user.email
+    fill_in "Password", with: @user.password
     click_button("LOGIN")
     expect(current_path).to eq("/links")
 
@@ -62,12 +57,12 @@ RSpec.feature "user updates existing link" do
 
     click_link("Edit Link")
 
-    expect(current_path).to eq("/links/#{link.id}/edit")
+    expect(current_path).to eq("/links/#{@link.id}/edit")
 
     fill_in "Url", with: "my invalid link"
     click_button("Update Link")
 
-    expect(current_path).to eq(edit_link_path(link))
+    expect(current_path).to eq(edit_link_path(@link))
     expect(page).to have_content("Data is missing or invalid! Try again")
   end
 end
