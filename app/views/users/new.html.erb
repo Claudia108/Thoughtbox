@@ -1,13 +1,32 @@
-
 <div class="container">
-  <h1>Create an Account</h1>
-  <div>
-    <%= form_for @user do |f| %>
-      <%= f.text_field :email, placeholder: "Email" %>
-      <%= f.password_field :password, placeholder: "Password" %>
-      <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
 
-      <%= f.submit "Create Account", class:"btn btn-primary" %>
-    <% end %>
+  <h1>Create an Account</h1>
+  <br>
+  <div class="row">
+    <div class="input-form">
+
+      <%= form_for @user do |f| %>
+
+        <fieldset class="form-group col-md-3">
+          <%= f.label :email %>
+          <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+        </fieldset>
+
+        <fieldset class="form-group col-md-3">
+          <%= f.label :password %>
+          <%= f.text_field :password, class: "form-control", placeholder: "Password" %>
+        </fieldset>
+
+        <fieldset class="form-group col-md-3">
+          <%= f.label :password_confirmation %>
+          <%= f.text_field :password_confirmation, class: "form-control", placeholder: "Confirm Password" %>
+        </fieldset>
+
+        <fieldset class="form-group col-md-6">
+          <%= f.submit "Create Account", class:"btn btn-primary" %>
+        </fieldset>
+
+      <% end %>
+    </div>
   </div>
 </div>

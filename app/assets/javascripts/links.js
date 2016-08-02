@@ -10,16 +10,16 @@ $(document).ready(function() {
     sortLinks();
   });
 
-  $('.markAsUnread').on('click', function(event) {
-    event.preventDefault();
-    var id = $(this).parents(".everyLink").data("id");
-    sendUpdate(id, this, false);
-  });
-
   $('.markAsRead').on('click', function(event) {
     event.preventDefault();
     var id = $(this).parents(".everyLink").data("id");
     sendUpdate(id, this, true);
+  });
+
+  $('.markAsUnread').on('click', function(event) {
+    event.preventDefault();
+    var id = $(this).parents(".everyLink").data("id");
+    sendUpdate(id, this, false);
   });
 
   $('#unreadLinks').on('click', function (event) {
