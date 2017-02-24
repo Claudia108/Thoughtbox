@@ -11,7 +11,7 @@
 * Database creation: postgresql database
 
 * Setup:
-  * git clone git@github.com:Claudia108/TexArch.git
+  * git clone git@github.com:Claudia108/Thoughtbox.git
   * bundle
   * Database initialization: run rake db:create
 
